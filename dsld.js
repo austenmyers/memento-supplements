@@ -8,6 +8,6 @@ function searchByBarCode(bar_code){
         return response.body
     }
     else {
-        return 'No Data Found'
+        return false
     }
 }

@@ -5,8 +5,7 @@ function searchByBarCode(bar_code){
     var url = api + endpoint + bar_code
     var response = http().get(url)
     if (response.code == 200){
-        var results = JSON.parse(response.body)
-        return results
+        return response.body
     }
     else {
         return false

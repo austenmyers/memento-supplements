@@ -1,6 +1,13 @@
-// Create URL with barcode.
-function makeURL(bar_code){
-    var api = 'https://api.ods.nih.gov/dsld/v9/'
+var api = 'https://api.ods.nih.gov/dsld/v9/'
+
+function searchByBarCode(bar_code){
     var endpoint = 'search-filter?q='
-    return api + endpoint + bar_code
+    var url = api + endpoint + bar_code
+    var response = http().get(url)
+    if (response.code == 200){
+        return response.body
+    }
+    else {
+        return 'No Data Found'
+    }
 }

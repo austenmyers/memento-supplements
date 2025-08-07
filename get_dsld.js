@@ -21,19 +21,6 @@ function searchByBarCode(bar_code){
     else {return false}
 }
 
-function getID(entry){
-    var id = entry.field('DSLD ID')
-    log('getID: '+ id)
-    if (id) {
-        return id
-    }
-    else {
-        var bar_code = entry.field('Search Bar Code')
-        log('bar code: ' + bar_code)
-        return searchByBarCode(bar_code)
-    }
-}
-
 function getLabelData(dsld_id){
     var endpoint = 'label/'
     var url = api + endpoint + dsld_id

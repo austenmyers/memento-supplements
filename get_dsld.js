@@ -11,3 +11,15 @@ function searchByBarCode(bar_code){
         return false
     }
 }
+
+function getLabelData(dsld_id){
+    var endpoint = 'label/'
+    var url = api + endpoint + dsld_id
+    var response = http().get(url)
+    if (response.code == 200){
+        return JSON.parse(response.body)
+    }
+    else {
+        return false
+    }
+}

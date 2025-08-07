@@ -1,13 +1,6 @@
 var api = 'https://api.ods.od.nih.gov/dsld/v9/'
 
-function getID(data){
-    var hits = data["hits"]
-    var hit = hits[0]
-    if (hit){
-        return hit['_id']
-    }
-    else {return false}
-}
+
 
 function searchByBarCode(bar_code){
     var endpoint = 'search-filter?q='
@@ -15,13 +8,26 @@ function searchByBarCode(bar_code){
     var response = http().get(url)
     if (response.code == 200){
         var data =  JSON.parse(response.body)
-        var id = getID(data)
-        return id
+        var hits = data["hits"]
+        var hit = hits[0]
+        if (hit){
+            return hit['_id']
+        }
+        else {return false}
     }
     else {return false}
 }
 
-
+function getID(entry){
+    var id = entry.field('DSLD ID')
+    if (id) {
+        return id
+    }
+    else {
+        var bar_code = entry.field('Search Bar Code')
+        return searchByBarCode(bar_code)
+    }
+}
 
 function getLabelData(dsld_id){
     var endpoint = 'label/'

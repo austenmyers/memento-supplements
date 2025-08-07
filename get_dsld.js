@@ -5,11 +5,18 @@ function searchByBarCode(bar_code){
     var url = api + endpoint + bar_code
     var response = http().get(url)
     if (response.code == 200){
-        return response.body
+        return JSON.parse(response.body)
     }
-    else {
-        return false
+    else {return false}
+}
+
+function getID(data){
+    var hits = data["hits"]
+    var hit = hits[0]
+    if (hit){
+        return hit['_id']
     }
+    else {return false}
 }
 
 function getLabelData(dsld_id){
